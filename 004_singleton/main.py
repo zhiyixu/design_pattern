@@ -9,9 +9,10 @@ class Singleton(object):
         return cls._instance
     
 class SingleClass(Singleton):
-
     def __init__(self, data):
-        self.data = data 
+        if not hasattr(self, 'initialized'):  # Check if already initialized
+            self.data = data
+            self.initialized = True  # Mark as initialized
 
 a = SingleClass(data=10)
 b = SingleClass(data=100)
